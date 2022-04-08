@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { FC, useState } from 'react';
+import '../styles.scss';
 
-const Input = () => {
+interface Props {
+  value: string,
+  setValue: React.Dispatch<React.SetStateAction<string>>,
+  handleSubmit: (e: React.FormEvent) => void,
+}
+
+// COMPONENT
+const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
+
+// VIEW
   return (
-    <div className='input__container'>
-      Input
-    </div>
+    <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
+      <input 
+        type="text" 
+        className="input__field"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <button className="input__button">GO</button>
+    </form>
   )
 }
 

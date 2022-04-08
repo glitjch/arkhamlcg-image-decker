@@ -1,0 +1,43 @@
+.App {
+  background-color: darkcyan;
+  width: 100vw;
+  height: 100vh;
+  
+  display: flex;
+  flex-direction: row;
+  // align-content: center;
+}
+
+.Input__container {
+  width: 200px;
+  height: 400px;
+  background-color: azure;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.Decklist__container {
+  width: 200px;
+  height: 400px;
+  background-color: azure;
+  margin: 20px;
+}
+
+.CardCodeList__container {
+  width: 200px;
+  height: 400px;
+  background-color: azure;
+  margin: 20px;
+  overflow: scroll;
+}
+
+.Images__container {
+  width: 200px;
+  height: 400px;
+  background-color: azure;
+  margin: 20px;
+  overflow: scroll;
+}

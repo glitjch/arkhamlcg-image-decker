@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import './App.scss';
+import DeckList from './components/DeckList';
 import Input from './components/Input';
 
 const App: React.FC = () => {
-  const [ value, setValue ] = useState<string>("")
-  const [ deck, setDeck ] = useState([])
+  const [ value, setValue ] = useState<any>("")
+  const [ decks, setDecks ] = useState<number[]>([])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (value) {
-      console.log(e);
+      setDecks([...decks, value]);
+      setValue("");
     }
   }
+
 
   return (
     <div className="App">
@@ -20,6 +23,7 @@ const App: React.FC = () => {
         setValue={setValue}
         handleSubmit={handleSubmit}
       />
+      <DeckList decks={decks} />
     </div>
   );
 }

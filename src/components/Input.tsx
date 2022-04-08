@@ -19,7 +19,7 @@ const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
         onChange={(e) => setValue(e.target.value)}
       />
       <button className="input__button">GO</button>
-      <span>{value}</span>
+      {/* <span>{value}</span> */}
     </form>
   )
 }

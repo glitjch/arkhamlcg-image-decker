@@ -1,4 +1,5 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useState } from 'react';
+import '../styles.scss';
 
 interface Props {
   value: string,
@@ -11,7 +12,7 @@ const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
 
 // VIEW
   return (
-    <form className='input__container' onSubmit={(e) => handleSubmit(e)}>
+    <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
       <input 
         type="text" 
         className="input__field"
@@ -19,7 +20,6 @@ const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
         onChange={(e) => setValue(e.target.value)}
       />
       <button className="input__button">GO</button>
-      {/* <span>{value}</span> */}
     </form>
   )
 }

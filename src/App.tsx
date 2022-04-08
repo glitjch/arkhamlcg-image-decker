@@ -6,6 +6,7 @@ import './styles.scss';
 import DeckList from './components/DeckList';
 import Input from './components/Input';
 import CardCodeList from './components/CardCodeList';
+import Images from './components/Images';
 
 
 
@@ -15,6 +16,8 @@ const App: React.FC = () => {
   const [ decks, setDecks ] = useState<number[]>([])
 
   const [cardCodes, setCardCodes] = useState<number[]>([])
+  const [ images, setImages] = useState<string[]>([]); // Images component
+
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -40,6 +43,18 @@ const App: React.FC = () => {
     }
   }
 
+
+  // FOR IMAGES COMPONENT 
+  const generateImages = () => {
+    return axios
+      .get('https://arkhamdb.com/api/public/card/01065')
+      .then(result => {
+        console.log(result.data.imagesrc)
+        setImages([...images, result.data.imagesrc])
+      })
+      .catch(result => console.log(result))
+  };
+
   // VIEW
   return (
     <div className="App">
@@ -51,6 +66,11 @@ const App: React.FC = () => {
       <DeckList decks={decks} />
       <CardCodeList
         cardCodes={cardCodes}
+      />
+      <Images 
+        generateImages={generateImages} 
+        images={images}
+        setImages={setImages}
       />
     </div>
   );

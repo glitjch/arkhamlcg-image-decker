@@ -5,7 +5,7 @@ import SingleImage from './SingleImage'
   interface Props {
     images: string[],
     setImages: React.Dispatch<React.SetStateAction<string[]>>,
-    generateImages: () => Promise<void>,
+    generateImages: () => Promise<void>[] | undefined,
   }
 
 // COMPONENT
@@ -17,8 +17,11 @@ const Images: React.FC<Props> = ({images, setImages, generateImages}) => {
       <form className='getImage'>
         <button type='button' onClick={()=> generateImages()}>Generate</button>
       </form>
-      {images.map((image, id) => {
-        return <SingleImage images={images} key={id}/>
+      {images && images.map((image) => {
+        
+        return (
+          <SingleImage image={image} key={Date.now()}/>
+        )
       })}
     </div>
   )

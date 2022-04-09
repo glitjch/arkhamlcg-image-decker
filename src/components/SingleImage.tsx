@@ -1,16 +1,16 @@
 import React from 'react'
 
 interface Props {
-  images: string[],
-  // id: number,
+  image: string,
+  key: number,
 }
 
 // COMPONENT
-const SingleImage: React.FC<Props> = ({images}) => {
+const SingleImage: React.FC<Props> = ({image, key}) => {
 
   // VIEW
   return (
-     <img className='SingleImage' src={"https://arkhamdb.com/" + images} /> 
+     <img key={key} className='SingleImage' src={"https://arkhamdb.com/" + image} /> 
   )
 }
 export default SingleImage

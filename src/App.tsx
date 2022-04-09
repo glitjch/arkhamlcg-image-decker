@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles.scss';
 
@@ -15,7 +15,7 @@ const App: React.FC = () => {
   const [ value, setValue ] = useState<any>("")
   const [ decks, setDecks ] = useState<number[]>([])
 
-  const [cardCodes, setCardCodes] = useState<number[]>([])
+  const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
   const [ images, setImages] = useState<string[]>([]); // Images component
 
 
@@ -23,14 +23,18 @@ const App: React.FC = () => {
     e.preventDefault()
     if (value) {
       setDecks([...decks, value]);
-      setValue("");
-      
-      requestData()
     }
   }
 
+  useEffect(() => {
+    requestData()
+    return () => {
+      setValue("")
+    }
+  }, [decks])
+  
   const requestData = () => {
-    if (value && Number(value) !== NaN && value.length === 5 && decks.length > 0) {
+    if (value && Number(value) !== NaN && value.length === 5) {
       const newestDeck = decks[decks.length - 1];      
       return axios
       .get(`https://arkhamdb.com/api/public/decklist/${newestDeck}`)
@@ -38,7 +42,7 @@ const App: React.FC = () => {
         const codes: any = Object.keys(result.data.slots);
         return setCardCodes(codes)
       })
-      .then(result => console.log(cardCodes))
+      // .then(result => console.log(cardCodes))
       .catch(error => console.log(error))
     }
   }
@@ -46,13 +50,16 @@ const App: React.FC = () => {
 
   // FOR IMAGES COMPONENT 
   const generateImages = () => {
-    return axios
-      .get('https://arkhamdb.com/api/public/card/01065')
-      .then(result => {
-        console.log(result.data.imagesrc)
-        setImages([...images, result.data.imagesrc])
+    if (cardCodes) {
+      return cardCodes.map((code) => {
+        return axios
+          .get(`https://arkhamdb.com/api/public/card/${code}`)
+          .then(result => {
+            setImages([...images, result.data.imagesrc])
+          })
+          .catch(result => console.log(result))
       })
-      .catch(result => console.log(result))
+    }
   };
 
   // VIEW

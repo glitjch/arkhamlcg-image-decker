@@ -17,11 +17,11 @@ const Images: React.FC<Props> = ({images, setImages, generateImages}) => {
       <form className='getImage'>
         <button type='button' onClick={()=> generateImages()}>Generate</button>
       </form>
-      {images && images.map((image, id) => {
-
-        return <ul>
-          <SingleImage image={image} key={id}/>
-          </ul>
+      {images && images.map((image) => {
+        
+        return (
+          <SingleImage image={image} key={Date.now()}/>
+        )
       })}
     </div>
   )

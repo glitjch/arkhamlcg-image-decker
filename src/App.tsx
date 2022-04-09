@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles.scss';
 
@@ -23,14 +23,18 @@ const App: React.FC = () => {
     e.preventDefault()
     if (value) {
       setDecks([...decks, value]);
-      setValue("");
-      
-      requestData()
     }
   }
 
+  useEffect(() => {
+    requestData()
+    return () => {
+      setValue("")
+    }
+  }, [decks])
+  
   const requestData = () => {
-    if (value && Number(value) !== NaN && value.length === 5 && decks.length > 0) {
+    if (value && Number(value) !== NaN && value.length === 5) {
       const newestDeck = decks[decks.length - 1];      
       return axios
       .get(`https://arkhamdb.com/api/public/decklist/${newestDeck}`)

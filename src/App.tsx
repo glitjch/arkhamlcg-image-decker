@@ -53,14 +53,14 @@ const App: React.FC = () => {
     if (cardCodes) {
       cardCodes.map((code) => {
         let p =  axios
-          .get(`https://arkhamdb.com/api/public/card/${code}`)
-          requestImagesrc.push(p)
+          .get(`https://arkhamdb.com/api/public/card/${code}`);
+        requestImagesrc.push(p);
       })
 
       Promise.all(requestImagesrc)
         .then(results => {
-          const array = results.map(result => result.data.imagesrc)
-          setImages([...array])
+          const array = results.map(result => result.data.imagesrc);
+          setImages([...array]);
         })
     }
   };

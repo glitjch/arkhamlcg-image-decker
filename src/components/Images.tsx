@@ -20,7 +20,7 @@ const Images: React.FC<Props> = ({images, setImages, generateImages}) => {
       {images && images.map((image) => {
         
         return (
-          <SingleImage image={image} key={Date.now()}/>
+          <SingleImage image={image} key={Date.now() + Math.random()}/>
         )
       })}
     </div>

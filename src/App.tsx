@@ -42,23 +42,26 @@ const App: React.FC = () => {
         const codes: any = Object.keys(result.data.slots);
         return setCardCodes(codes)
       })
-      // .then(result => console.log(cardCodes))
       .catch(error => console.log(error))
     }
   }
 
 
   // FOR IMAGES COMPONENT 
-  const generateImages = () => {
+  const generateImages: any = () => {    
+    let requestImagesrc: any[] = [];
     if (cardCodes) {
-      return cardCodes.map((code) => {
-        return axios
-          .get(`https://arkhamdb.com/api/public/card/${code}`)
-          .then(result => {
-            setImages([...images, result.data.imagesrc])
-          })
-          .catch(result => console.log(result))
+      cardCodes.map((code) => {
+        let p =  axios
+          .get(`https://arkhamdb.com/api/public/card/${code}`);
+        requestImagesrc.push(p);
       })
+
+      Promise.all(requestImagesrc)
+        .then(results => {
+          const array = results.map(result => result.data.imagesrc);
+          setImages([...array]);
+        })
     }
   };
 
@@ -79,6 +82,7 @@ const App: React.FC = () => {
         images={images}
         setImages={setImages}
       />
+      {images && images.length}
     </div>
   );
 }

@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './styles.scss';
 
+// CONTEXT
+import { MyGlobalContext } from './GlobalContext';
+
+
+
+
 // CHILDREN
 import DeckList from './components/DeckList';
 import Input from './components/Input';
@@ -65,15 +71,21 @@ const App: React.FC = () => {
     }
   };
 
+  const globalProps = {value, setValue, decks};
+
   // VIEW
   return (
     <div className="App">
+      <MyGlobalContext.Provider value={globalProps}>
+
       <Input 
-        value={value} 
-        setValue={setValue}
+        // value={value} 
+        // setValue={setValue}
         handleSubmit={handleSubmit}
       />
-      <DeckList decks={decks} />
+      <DeckList 
+        // decks={decks} 
+        />
       <CardCodeList
         cardCodes={cardCodes}
       />
@@ -83,6 +95,9 @@ const App: React.FC = () => {
         setImages={setImages}
       />
       {images && images.length}
+
+      </MyGlobalContext.Provider>
+
     </div>
   );
 }

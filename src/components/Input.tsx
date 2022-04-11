@@ -1,14 +1,17 @@
 import React, { FC, useState } from 'react';
 import '../styles.scss';
+import { useGlobalContext } from '../GlobalContext';
 
 interface Props {
-  value: string,
-  setValue: React.Dispatch<React.SetStateAction<string>>,
+  // value: string,
+  // setValue: React.Dispatch<React.SetStateAction<string>>,
   handleSubmit: (e: React.FormEvent) => void,
 }
 
 // COMPONENT
-const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
+const Input: React.FC<Props> = ({handleSubmit}) => {
+const { value, setValue } = useGlobalContext();
+
 
 // VIEW
   return (
@@ -19,6 +22,7 @@ const Input: React.FC<Props> = ({value, setValue, handleSubmit}) => {
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
+      {value}
       <button className="input__button">GO</button>
     </form>
   )

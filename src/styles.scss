@@ -35,9 +35,25 @@
 }
 
 .Images__container {
-  width: 200px;
+  width: fit-content;
   height: auto;
   background-color: azure;
   margin: 20px;
   overflow: scroll;
+}
+
+.SingleImage {
+  width: min-content;
+  border-width: 2px;
+  margin: 50px;
+}
+
+@media print {
+  .SingleImage {
+    margin: 20px;
+    width: 50px;
+    border-color: red;
+    border-width: 2px;
+
+  }
 }

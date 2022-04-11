@@ -1,18 +1,13 @@
 import React from 'react';
 import { useGlobalContext } from '../GlobalContext';
 
-
-interface Props {
-  // decks: number[]
-}
-
 // COMPONENT
-const DeckList: React.FC<Props> = () => {
+const DeckList: React.FC = () => {
   const { decks } = useGlobalContext();
 
   const listDecks = (props: any) => {
-    return props.map((deck: number, id: number) => {
-      return <ul key={id}>{deck}</ul>
+    return props.map((deck: number) => {
+      return <ul key={deck}>{deck}</ul>
     })
   }
   

@@ -1,12 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import './styles.scss';
-
-// CONTEXT
-import { MyGlobalContext } from './GlobalContext';
-
-
-
 
 // CHILDREN
 import DeckList from './components/DeckList';
@@ -14,78 +7,32 @@ import Input from './components/Input';
 import CardCodeList from './components/CardCodeList';
 import Images from './components/Images';
 
+// GLOBAL PROPS
+import { useGlobalContext } from './GlobalContext';
 
 
 // COMPONENT
 const App: React.FC = () => {
-  const [ value, setValue ] = useState<any>("")
-  const [ decks, setDecks ] = useState<number[]>([])
-
-  const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
-  const [ images, setImages] = useState<string[]>([]); // Images component
-
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (value) {
-      setDecks([...decks, value]);
-    }
-  }
+  const {
+    values, setValues, 
+    decks, setDecks, 
+    cardCodes, setCardCodes, 
+    images, setImages,
+    requestData,
+    generateImages } = useGlobalContext()
 
   useEffect(() => {
     requestData()
     return () => {
-      setValue("")
+      setValues("")
     }
   }, [decks])
-  
-  const requestData = () => {
-    if (value && Number(value) !== NaN && value.length === 5) {
-      const newestDeck = decks[decks.length - 1];      
-      return axios
-      .get(`https://arkhamdb.com/api/public/decklist/${newestDeck}`)
-      .then(result => {
-        const codes: any = Object.keys(result.data.slots);
-        return setCardCodes(codes)
-      })
-      .catch(error => console.log(error))
-    }
-  }
-
-
-  // FOR IMAGES COMPONENT 
-  const generateImages: any = () => {    
-    let requestImagesrc: any[] = [];
-    if (cardCodes) {
-      cardCodes.map((code) => {
-        let p =  axios
-          .get(`https://arkhamdb.com/api/public/card/${code}`);
-        requestImagesrc.push(p);
-      })
-
-      Promise.all(requestImagesrc)
-        .then(results => {
-          const array = results.map(result => result.data.imagesrc);
-          setImages([...array]);
-        })
-    }
-  };
-
-  const globalProps = {value, setValue, decks};
 
   // VIEW
   return (
     <div className="App">
-      <MyGlobalContext.Provider value={globalProps}>
-
-      <Input 
-        // value={value} 
-        // setValue={setValue}
-        handleSubmit={handleSubmit}
-      />
-      <DeckList 
-        // decks={decks} 
-        />
+      <Input />
+      <DeckList />
       <CardCodeList
         cardCodes={cardCodes}
       />
@@ -95,9 +42,6 @@ const App: React.FC = () => {
         setImages={setImages}
       />
       {images && images.length}
-
-      </MyGlobalContext.Provider>
-
     </div>
   );
 }

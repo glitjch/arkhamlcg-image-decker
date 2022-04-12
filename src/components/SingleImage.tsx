@@ -8,7 +8,6 @@ interface Props {
 
 // COMPONENT
 const SingleImage: React.FC<Props> = ({image, key}) => {
-
   // VIEW
   return (
     <div>

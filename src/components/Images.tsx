@@ -1,35 +1,34 @@
 import printJS from 'print-js';
 import React, { useEffect, useState } from 'react'
 import '../styles.scss'
-import SingleImage from './SingleImage';
+import SingleImage from './SingleImage'
+import { useGlobalContext } from '../GlobalContext';
 
-
-  interface Props {
-    images: string[],
-    setImages: React.Dispatch<React.SetStateAction<string[]>>,
-    generateImages: () => Promise<void>[] | undefined,
-  }
 
 // COMPONENT
-const Images: React.FC<Props> = ({images, setImages, generateImages}) => {
-  const [ print, setPrint ] = useState<string[]>([]);
+const Images: React.FC = () => {
+  const { 
+    images, setImages, 
+    generateImageURLs, 
+    print, 
+    printAll, } = useGlobalContext();
 
   useEffect(() => {
-    const printAll = () => {
-      const printArray: string[] = [];
-      images.filter(image => image !== undefined).map(image => printArray.push("https://arkhamdb.com" + image));
-      setPrint(printArray.slice(0, 5))
-    }
     printAll();
-  
   }, [images])
   
+  const generateImages = images.slice(0,5).map((image) => {
+    return (
+      <SingleImage image={image} key={Date.now() + Math.random()}/>
+    )
+  })
+
 
   // VIEW
   return (
     <div className='Images__container'>
       <form className='getImage'>
-        <button type='button' onClick={()=> generateImages()}>Generate</button>
+        <button type='button' onClick={()=> generateImageURLs()}>Generate</button>
       </form>
       <button type="button" onClick={() => {
         printJS({
@@ -46,15 +45,7 @@ const Images: React.FC<Props> = ({images, setImages, generateImages}) => {
         }}>
         Print All {print.length} Cards
       </button>
-      {print.map(p => {
-        return <ul>{p}</ul>
-      })}
-
-      {images && images.slice(0,5).map((image) => {
-        return (
-          <SingleImage image={image} key={Date.now() + Math.random()}/>
-        )
-      })}
+      {images && generateImages}
     </div>
   )
 }

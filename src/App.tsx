@@ -16,10 +16,8 @@ const App: React.FC = () => {
   const {
     values, setValues, 
     decks, setDecks, 
-    cardCodes, setCardCodes, 
     images, setImages,
-    requestData,
-    generateImages } = useGlobalContext()
+    requestData, } = useGlobalContext()
 
   useEffect(() => {
     requestData()
@@ -33,14 +31,8 @@ const App: React.FC = () => {
     <div className="App">
       <Input />
       <DeckList />
-      <CardCodeList
-        cardCodes={cardCodes}
-      />
-      <Images 
-        generateImages={generateImages} 
-        images={images}
-        setImages={setImages}
-      />
+      <CardCodeList />
+      <Images />
       {images && images.length}
     </div>
   );

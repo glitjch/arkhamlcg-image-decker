@@ -1,10 +1,8 @@
-
-interface Props {
-  cardCodes: number[],
-}
+import { useGlobalContext } from '../GlobalContext';
 
 // COMPONENT
-const CardCodeList: React.FC<Props> = ({cardCodes}) => {
+const CardCodeList: React.FC = () => {
+  const { cardCodes } = useGlobalContext()
 
   const generateCodeList = (list: number[]) => {
   return list.map( (code, id) => {

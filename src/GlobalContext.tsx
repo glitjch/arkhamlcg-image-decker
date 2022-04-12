@@ -13,9 +13,8 @@ interface GlobalContent {
   images: string[],
   setImages: any,
   requestData: () => void,
-  generateImageURLs: () => Promise<void>[],
-  printAll: () => void,
   print: string[],
+  setPrint: React.Dispatch<React.SetStateAction<string[]>>,
   // values: string,
   // setValues: React.Dispatch<React.SetStateAction<string>>,
   // decks: number[],
@@ -68,30 +67,6 @@ export default function ContextProvider(props:any) {
     }
   }
 
-  // IMAGES COMPONENT
-  const generateImageURLs: any = () => {    
-    let requestImagesrc: any[] = [];
-    if (cardCodes) {
-      cardCodes.map((code: any) => {
-        let p =  axios
-          .get(`https://arkhamdb.com/api/public/card/${code}`);
-        requestImagesrc.push(p);
-      })
-
-      Promise.all(requestImagesrc)
-        .then(results => {
-          const array = results.map(result => result.data.imagesrc);
-          setImages([...array]);
-        })
-    }
-  };
-
-  // IMAGES COMPONENT FOR PRINTING ALL IMAGES
-  const printAll = () => {
-    const printArray: string[] = [];
-    images.filter(image => image !== undefined).map(image => printArray.push("https://arkhamdb.com" + image));
-    setPrint(printArray.slice(0, 5))
-  }
 
   const providerData = { 
     values, 
@@ -104,9 +79,8 @@ export default function ContextProvider(props:any) {
     images,
     setImages,
     requestData,
-    generateImageURLs,
     print,
-    printAll,
+    setPrint,
   }
 
 

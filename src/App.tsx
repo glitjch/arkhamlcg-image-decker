@@ -26,6 +26,7 @@ const App: React.FC = () => {
   // VIEW
   return (
     <div className="App">
+      <header>Proxy Ritual</header>
       {render === "Input" && <Input />}
       {render === "DeckList" && <DeckList />}
       {render === "CardCodelist" && <CardCodeList />}

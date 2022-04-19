@@ -14,12 +14,6 @@ const { values, setValues, handleSubmit } = useGlobalContext();
 // VIEW
   return (
     <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
-      {/* <input 
-        type="text" 
-        className="input__field"
-        value={values}
-        onChange={(e) => setValues(e.target.value)}
-      /> */}
       <InputFormItem />
       {values}
       <button className="input__button">GO</button>

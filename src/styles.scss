@@ -4,15 +4,16 @@
   height: 100vh;
   
   display: flex;
-  flex-direction: row;
-  // align-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Input__container {
-  width: 200px;
+  width: 80%;
   height: 400px;
   background-color: azure;
-  margin: 20px;
+  margin: 25px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;

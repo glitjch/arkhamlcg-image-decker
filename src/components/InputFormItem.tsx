@@ -4,12 +4,7 @@ import { useGlobalContext } from '../GlobalContext';
 type Form = React.InputHTMLAttributes<HTMLInputElement>
 
 const InputFormItem = () => {
-  const { values, setValues } = useGlobalContext();
-  // const { digits, setDigits } = useState<any[]>([]);
-  // const { values, setdigit } = useGlobalContext();
-  // const { values, setdigit } = useGlobalContext();
-  // const { values, setdigit } = useGlobalContext();
-  
+  const { values, setValues } = useGlobalContext();  
   function multiply () {
     const formsArray:any = [];
     for (let i = 1; i <= 5; i++) {
@@ -18,7 +13,6 @@ const InputFormItem = () => {
         type="text" 
         maxLength={1}
         className="input__field"
-        // value={}
         onChange={(e) => {
           const singleInput = e.target.value;
           setValues((prev: any) => [prev, singleInput]);
@@ -33,7 +27,6 @@ const InputFormItem = () => {
   return (
     <form className='InputFormItem__container'>
       {multiply()}
-      {values}
     </form>
   )
 }

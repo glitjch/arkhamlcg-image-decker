@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './styles.scss';
 
 // CHILDREN
@@ -13,11 +13,8 @@ import { useGlobalContext } from './GlobalContext';
 
 // COMPONENT
 const App: React.FC = () => {
-  const {
-    values, setValues, 
-    decks, setDecks, 
-    images, setImages,
-    requestData, } = useGlobalContext()
+  const { setValues, decks, images, requestData, } = useGlobalContext()
+  const [render, setRender] = useState("Input")
 
   useEffect(() => {
     requestData()
@@ -29,10 +26,10 @@ const App: React.FC = () => {
   // VIEW
   return (
     <div className="App">
-      <Input />
-      <DeckList />
-      <CardCodeList />
-      <Images />
+      {render === "Input" && <Input />}
+      {render === "DeckList" && <DeckList />}
+      {render === "CardCodelist" && <CardCodeList />}
+      {render ===  "Images" && <Images />}
       {images && images.length}
     </div>
   );

@@ -1,21 +1,84 @@
+
+$fontSize-H2: 3em; 
+
+// experimenting on sass viewport
+$breakpoint-small: 600px;
+$breakpoint-med-small: 960px;
+$breakpoint-med: 1175px;
+
+@mixin screen($size, $pixels: $breakpoint-small) {
+  @if $size == 'small' {
+    @media screen and (max-width: $breakpoint-small) {
+        @content;
+    }
+  }
+  @else if $size == 'med-small' {
+    @media screen and (max-width: $breakpoint-med-small) {
+        @content;
+    }
+  }
+  @else if $size == 'med' {
+    @media screen and (max-width: $breakpoint-med) {
+        @content;
+    }
+  }
+  @else {
+    @content;
+  }
+}
+
 .App {
   background-color: darkcyan;
   width: 100vw;
   height: 100vh;
   
   display: flex;
-  flex-direction: row;
-  // align-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  @include screen('small') {
+    width: 100px
+  }
+  @include screen('med-small') {
+    width: 200px
+  }
+  @include screen('med') {
+    width: 100%
+  }
 }
 
 .Input__container {
-  width: 200px;
+  width: 80%;
   height: 400px;
   background-color: azure;
-  margin: 20px;
+  margin: 25px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow: hidden;
+
+}
+
+.InputFormItem__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.input__field {
+  width: 50px;
+  height: 100px;
+  text-align: center;
+  padding: 5px;
+  border-radius: 30px;
+  
+  font: {
+    family: 'Neucha', cursive;
+    size: $fontSize-H2;
+    weight: 800;
+  }
+
 
 }
 

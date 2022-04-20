@@ -37,7 +37,7 @@ export const useGlobalContext = () => useContext(MyGlobalContext);
 // PROVIDER COMPONENT
 export default function ContextProvider(props:any) {
   // ALL STATES MANAGED
-  const [values, setValues] = useState<any>("")
+  const [values, setValues] = useState<any>()
   const [decks, setDecks] =  useState<number[]>([])
   const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
   const [ images, setImages ] = useState<string[]>([]); // Images component

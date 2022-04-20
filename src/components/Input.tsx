@@ -16,7 +16,7 @@ const { values, setValues, handleSubmit } = useGlobalContext();
     <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
       <InputFormItem />
       {values}
-      <button className="input__button">GO</button>
+      <button className="input__button">INVOKE</button>
     </form>
   )
 }

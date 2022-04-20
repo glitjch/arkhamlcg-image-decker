@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import '../styles.scss';
+
 import { useGlobalContext } from '../GlobalContext';
 
-type Form = React.InputHTMLAttributes<HTMLInputElement>
-
+// COMPONENT
 const InputFormItem = () => {
   const { values, setValues } = useGlobalContext();  
   function multiply () {
@@ -23,7 +23,7 @@ const InputFormItem = () => {
     return formsArray;
   }
   
-  
+  // VIEW
   return (
     <form className='InputFormItem__container'>
       {multiply()}

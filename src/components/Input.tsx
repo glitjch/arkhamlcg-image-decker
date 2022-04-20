@@ -9,6 +9,7 @@ import InputFormItem from './InputFormItem';
 // COMPONENT
 const Input: React.FC = () => {
 const { values, setValues, handleSubmit } = useGlobalContext();
+const [empty, setEmpty] = useState(1)
 
 
 const inputElement:any = useRef();
@@ -29,6 +30,7 @@ const focusInput:() => void = ()=> {
         </button>
       <InputFormItem 
         inputElement={inputElement}
+        focusInput={focusInput}
       />
       {values}
       <button className="input__button">INVOKE</button>

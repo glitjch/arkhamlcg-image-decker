@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import '../styles.scss';
 
 
@@ -14,6 +14,7 @@ const { values, setValues, handleSubmit } = useGlobalContext();
 const inputElement:any = useRef();
 
 const focusInput:() => void = ()=> {
+  
   inputElement.current.focus();  
 }
 

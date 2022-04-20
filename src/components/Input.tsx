@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import '../styles.scss';
 
 
@@ -10,11 +10,25 @@ import InputFormItem from './InputFormItem';
 const Input: React.FC = () => {
 const { values, setValues, handleSubmit } = useGlobalContext();
 
-// Set each input into one 
+
+const inputElement:any = useRef();
+
+const focusInput:() => void = ()=> {
+  inputElement.current.focus();  
+}
+
 // VIEW
   return (
     <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
-      <InputFormItem />
+      <button 
+        type="button" className="begin__button"
+        onClick={() => focusInput()}
+        >Begin Ritual
+        
+        </button>
+      <InputFormItem 
+        inputElement={inputElement}
+      />
       {values}
       <button className="input__button">INVOKE</button>
     </form>

@@ -14,7 +14,11 @@ const Images: React.FC = () => {
     cardCodes,
     print, setPrint, } = useGlobalContext();
 
-  const handleGenerateImages = () => generateImageURLs(cardCodes, setImages);
+  const handleGenerateImages = () => {
+    console.log(cardCodes);
+    
+    generateImageURLs(cardCodes, setImages)
+  };
 
   useEffect(() => {printAll(print, setPrint);}, [images]);
   

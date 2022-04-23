@@ -5,9 +5,12 @@ import '../styles.scss';
 import { useGlobalContext } from '../GlobalContext';
 import InputFormItem from './InputFormItem';
 
+interface Props{
+  setRender: React.Dispatch<React.SetStateAction<string>>
+}
 
 // COMPONENT
-const Input: React.FC = () => {
+const Input: React.FC<Props> = ({setRender}: Props ) => {
 const { values, setValues, handleSubmit } = useGlobalContext();
 const [empty, setEmpty] = useState(1)
 
@@ -21,7 +24,11 @@ const focusInput:() => void = ()=> {
 
 // VIEW
   return (
-    <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
+    <form className='Input__container' onSubmit={(e) => {
+      handleSubmit(e)
+      setRender("Images")
+    }
+    }>
       <button 
         type="button" className="begin__button"
         onClick={() => focusInput()}

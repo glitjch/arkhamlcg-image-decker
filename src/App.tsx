@@ -10,11 +10,19 @@ import Images from './components/Images';
 // GLOBAL PROPS
 import { useGlobalContext } from './GlobalContext';
 
+enum Renders {
+  Input = "Input",
+  DeckList = "DeckList",
+  CardCodeList = "CardCodeList",
+  Images = "Images",
+}
+
+// type Renders = "Input" | "Decklist"
 
 // COMPONENT
 const App: React.FC = () => {
   const { setValues, decks, images, requestData, } = useGlobalContext()
-  const [render, setRender] = useState("Input")
+  const [render, setRender] = useState<string>("Input")
 
   useEffect(() => {
     requestData()
@@ -27,10 +35,10 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <header>Proxy Ritual</header>
-      {render === "Input" && <Input />}
-      {render === "DeckList" && <DeckList />}
-      {render === "CardCodelist" && <CardCodeList />}
-      {render ===  "Images" && <Images />}
+      {render === Renders.Input && <Input setRender={setRender}/>}
+      {render === Renders.DeckList && <DeckList />}
+      {render === Renders.CardCodeList && <CardCodeList />}
+      {render === Renders.Images && <Images />}
       {images && images.length}
     </div>
   );

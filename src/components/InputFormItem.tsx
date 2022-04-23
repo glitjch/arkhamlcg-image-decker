@@ -36,7 +36,7 @@ const InputFormItem = (props: any) => {
         key={i}
         onChange={(e) => {
           const singleInput = e.target.value;
-          setValues((prev: any) => [prev, singleInput]);
+          setValues((prev: any) => prev + singleInput);
           disableInput(i);
           setEmpty(prev => prev + 1)
         }}

@@ -17,13 +17,12 @@ enum Renders {
   Images = "Images",
 }
 
-// type Renders = "Input" | "Decklist"
-
 // COMPONENT
 const App: React.FC = () => {
   const { setValues, decks, images, requestData, } = useGlobalContext()
-  const [render, setRender] = useState<string>("Input")
+  const [render, setRender] = useState<string>("Input") // ---> for mounting and unmounting components. 
 
+  // 
   useEffect(() => {
     requestData()
     return () => {

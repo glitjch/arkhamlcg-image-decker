@@ -1,50 +1,28 @@
-
 $fontSize-H2: 3em; 
 
-// experimenting on sass viewport
-$breakpoint-small: 600px;
-$breakpoint-med-small: 960px;
-$breakpoint-med: 1175px;
-
-@mixin screen($size, $pixels: $breakpoint-small) {
-  @if $size == 'small' {
-    @media screen and (max-width: $breakpoint-small) {
-        @content;
-    }
-  }
-  @else if $size == 'med-small' {
-    @media screen and (max-width: $breakpoint-med-small) {
-        @content;
-    }
-  }
-  @else if $size == 'med' {
-    @media screen and (max-width: $breakpoint-med) {
-        @content;
-    }
-  }
-  @else {
-    @content;
-  }
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
+html {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+}
 .App {
   background-color: darkcyan;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   
   display: flex;
   flex-direction: column;
+  justify-content: center;  
   align-items: center;
-
-  @include screen('small') {
-    width: 100px
-  }
-  @include screen('med-small') {
-    width: 200px
-  }
-  @include screen('med') {
-    width: 100%
-  }
 }
 
 .Input__container {
@@ -53,17 +31,28 @@ $breakpoint-med: 1175px;
   background-color: azure;
   margin: 25px;
   padding: 15px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
+  border-radius: 50px;
 
 }
 
+.begin__button {
+  max-width: 100px;
+  min-height: 100px;
+}
+
 .InputFormItem__container {
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-around;
+}
+.reveal {
+  display: flex;
 }
 
 .input__field {

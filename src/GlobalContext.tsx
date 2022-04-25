@@ -37,13 +37,11 @@ export const useGlobalContext = () => useContext(MyGlobalContext);
 // PROVIDER COMPONENT
 export default function ContextProvider(props:any) {
   // ALL STATES MANAGED
-  const [values, setValues] = useState<any>("")
-  const [decks, setDecks] =  useState<number[]>([])
+  const [values, setValues] = useState<any>("") // form input 
+  const [decks, setDecks] =  useState<number[]>([]) // record of decks (some features for future app)
   const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
   const [ images, setImages ] = useState<string[]>([]); // Images component
   const [ print, setPrint ] = useState<string[]>([]); // Images Component list for print option
-
-
 
   // INPUT COMPONENT
   const handleSubmit = (e: React.FormEvent) => {
@@ -51,7 +49,6 @@ export default function ContextProvider(props:any) {
     if (values) {
       setDecks([...decks, values]);
       console.log(values);
-
     }
   }
 

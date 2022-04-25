@@ -11,20 +11,17 @@ const InputFormItem = (props: any) => {
     if (empty < 6) {
       props.focusInput()
     }
-
   }, [empty])
-  
-  // 1. if the form is empty set to empty. why? 
-  // 2. focus on the first one. it unique by key
-  // if it is empty and any field greater value than its value is empty: focus
-  // if form is empty, its classname is empty
 
   function multiply () {
     const formsArray:any = [];
+
+    // prevents user from retyping in the same input after value exists
     function disableInput (index: number){
       let theInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
       theInput.disabled = true;
     }
+
     for (let i = 1; i <= 5; i++) {
       formsArray.push(
         <input 
@@ -49,10 +46,11 @@ const InputFormItem = (props: any) => {
   
   // VIEW
   return (
-    <form className='InputFormItem__container'>
+    <form className='InputFormItem__container' 
+    id='test'
+
+    >
       {multiply()}
-      {/* hi{props.r} */}
-      {empty}
     </form>
   )
 }

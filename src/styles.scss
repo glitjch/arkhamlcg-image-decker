@@ -121,17 +121,26 @@ html, body {
 .Input__container {
   width: 80%;
   height: 400px;
-  background-color: azure;
   margin: 25px;
   padding: 15px;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  // overflow: hidden;
   border-radius: 50px;
+  
+  background-color: azure;
+  background: center url("./components/images/board.png");
+  background-repeat: no-repeat;
+  animation: backgroundScroll 499s linear infinite;
+}
 
+@keyframes backgroundScroll {
+  0%   {background-position: 0 0;}
+  50%  {background-position: -400px -400px;}
+  100% {background-position: 0 0;}
 }
 
 .begin__button {

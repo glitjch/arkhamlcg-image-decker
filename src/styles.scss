@@ -81,10 +81,30 @@ html, body {
   z-index: 4;
   top: 50px;
   right: 0;
-  width: 350px;
+  width: 375px;
   background-color: #157b63;
+  padding: 15px;
+  border-bottom-left-radius: 20px;
+
+	opacity: 1;
+	animation-name: fadeInOpacity;
+	animation-iteration-count: 1;
+	animation-timing-function: ease-in;
+	animation-duration: 0.3s;
+  h4 {
+    font-size: 1.6rem;
+    margin: 1px;
+  }
 }
 
+@keyframes fadeInOpacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 
 .App {
   position: fixed;

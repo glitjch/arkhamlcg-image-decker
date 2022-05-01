@@ -32,6 +32,8 @@ const App: React.FC = () => {
 
   // VIEW
   return (
+    <>
+    <div className="layerBg">sfsd</div>
     <div className="App">
       <header>Proxy Ritual</header>
       {render === Renders.Input && <Input setRender={setRender}/>}
@@ -40,6 +42,7 @@ const App: React.FC = () => {
       {render === Renders.Images && <Images />}
       {images && images.length}
     </div>
+    </>
   );
 }
 

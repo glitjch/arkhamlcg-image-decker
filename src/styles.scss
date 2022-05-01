@@ -1,4 +1,5 @@
-$fontSize-H2: 3em; 
+// $fontSize-H2: 3em; 
+@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 
 * {
   -webkit-box-sizing: border-box;
@@ -18,15 +19,9 @@ html, body {
 }
 
 @keyframes gradient {
-  0% {
-      background-position: 0% 50%;
-  }
-  50% {
-      background-position: 100% 50%;
-  }
-  100% {
-      background-position: 0% 50%;
-  }
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
 }
 
 .layerBg {
@@ -40,6 +35,43 @@ html, body {
   width: 100%;  
   height: 100%;
   opacity: 20%;
+}
+
+.Nav__container {
+  padding: 10px;
+  position: fixed;
+  justify-content: space-between;
+  display: flex;
+  z-index: 3;
+  height: 50px;
+  width: 100%;
+  background-color: #0b3a4b7c;
+  font: {
+    family: 'Neucha', cursive;
+    size: 35px;
+  }
+  div {
+    display: flex;
+    width: auto;
+    h1 {
+      font-size: 1.0em;
+      margin: 0;
+    }
+    h2 {
+      font-size: 0.5em;
+      margin: 0;
+    }
+    p {
+      font-size: 0.8em;
+      margin: 0;
+      font-weight: 600;
+      &:hover {
+        color: #3ac2a2;
+        transition: 1.5s;
+      }
+    }
+  }
+
 }
 
 .App {
@@ -93,7 +125,7 @@ html, body {
   
   font: {
     family: 'Neucha', cursive;
-    size: $fontSize-H2;
+    // size: $fontSize-H2;
     weight: 800;
   }
 

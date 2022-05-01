@@ -9,6 +9,7 @@ import Images from './components/Images';
 
 // GLOBAL PROPS
 import { useGlobalContext } from './GlobalContext';
+import Nav from './components/Nav';
 
 enum Renders {
   Input = "Input",
@@ -33,9 +34,9 @@ const App: React.FC = () => {
   // VIEW
   return (
     <>
-    <div className="layerBg">sfsd</div>
+    <Nav/>
+    <div className="layerBg"/>
     <div className="App">
-      <header>Proxy Ritual</header>
       {render === Renders.Input && <Input setRender={setRender}/>}
       {render === Renders.DeckList && <DeckList />}
       {render === Renders.CardCodeList && <CardCodeList />}

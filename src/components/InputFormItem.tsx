@@ -14,9 +14,9 @@ const InputFormItem = (props: any) => {
 
   // Prevents user from retyping in the same input after value exists
   const disableFilledInput = (index: number) => {
-    let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
-    filledInput.disabled = true;
-  };
+      let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
+      filledInput.disabled = true;
+    };
   
   const handleInputChange = (event: any) => {
     setValues((prev: any) => prev + event.target.value);
@@ -33,6 +33,8 @@ const InputFormItem = (props: any) => {
           type="number" 
           ref={empty === i ? props.inputElement : null}
           maxLength={1}
+          max={9}
+          min={+0}
           className={`input__field ${i}`}
           id={`digit${i}`}
           key={i}

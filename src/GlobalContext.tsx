@@ -42,13 +42,16 @@ export default function ContextProvider(props:any) {
   const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
   const [ images, setImages ] = useState<string[]>([]); // Images component
   const [ print, setPrint ] = useState<string[]>([]); // Images Component list for print option
+  const [ empty, setEmpty ] = useState<number>(1);
 
   // INPUT COMPONENT
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if(values.length < 5) {
-      throw new Error("Insert the full Deck ID")
+      setEmpty(1);
+      throw new Error("Insert the full Deck ID");
     }
+    
     if (values.length === 5) {
       setDecks([...decks, values]);
       console.log(values);

@@ -168,14 +168,10 @@ html, body {
 }
 
 .InputFormItem__container {
-  display: none;
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
-.reveal {
-  display: flex;
-}
-
 // Removes drop-down menu for input fields
 // https://www.w3schools.com/howto/howto_css_hide_arrow_number.asp
 input::-webkit-outer-spin-button,

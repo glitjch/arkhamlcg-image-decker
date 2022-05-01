@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import '../styles.scss';
 
 import { useGlobalContext } from '../GlobalContext';
@@ -28,25 +28,28 @@ const Input: React.FC<Props> = ({setRender}: Props ) => {
         setRender("Images")
     }}>
 
-     {inputRender === "begin" && 
-       <button 
-       type="button" className="begin__button" 
-       onClick={() => {
-         let inputForm: any = (document.getElementById(`test`) as HTMLInputElement);
-         setTimeout( ()=> {
-           focusInput()
-           inputForm.classList.toggle("reveal"); // Class to reveal input forms: default display: none
-          setInputRender("process")
-          }, 500) 
-       }}>
-         Begin Ritual
-       </button>  
-     }
-      <InputFormItem 
+      {inputRender === "begin" && 
+        <button 
+        type="button" className="begin__button" 
+        onClick={() => {
+          setTimeout( ()=> {
+            setInputRender("process")
+            focusInput()
+            }, 500) 
+        }}>
+          Begin Ritual
+        </button>  
+      }
+    
+      {inputRender === "process" && 
+        <>
+        <InputFormItem 
         inputElement={inputElement}
-        focusInput={focusInput}
-      />
-     {inputRender === "process" && <button className="input__button">INVOKE</button>}
+        focusInput={focusInput} 
+        />
+          <button className="input__button">INVOKE</button>
+        </>
+      }
     </form>
   )
 }

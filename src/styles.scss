@@ -128,24 +128,43 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // overflow: hidden;
   border-radius: 50px;
   
-  background-color: azure;
   background: center url("./components/images/board.png");
   background-repeat: no-repeat;
-  animation: backgroundScroll 499s linear infinite;
+  animation: backgroundScroll 439s linear infinite;
+}
+
+
+.begin__button {
+  width: 188px;
+  height: 267px;
+  font: {
+    family: 'Neucha';
+    size: 35px;
+  }
+  color: white;
+  border-radius: 15px;
+
+  border: none;
+  background: center / auto url("./components/images/backCard-before.png");
+  background-repeat: no-repeat;
+  animation: rotate 149s linear infinite;
+  filter: sepia(0.5);  
+  transition: 1.5s;
+
+  &:hover {
+  background: center / auto url("./components/images/backCard.png");
+  filter: saturate(0.05);
+  transition: 2s;
+  }
 }
 
 @keyframes backgroundScroll {
   0%   {background-position: 0 0;}
-  50%  {background-position: -400px -400px;}
+  33%  {background-position: -300px -600px;}
+  66%  {background-position: -000px -500px;}
   100% {background-position: 0 0;}
-}
-
-.begin__button {
-  max-width: 100px;
-  min-height: 100px;
 }
 
 .InputFormItem__container {

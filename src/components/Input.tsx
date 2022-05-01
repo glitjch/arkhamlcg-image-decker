@@ -10,7 +10,7 @@ interface Props{
 
 // COMPONENT
 const Input: React.FC<Props> = ({setRender}: Props ) => {
-const { values, setValues, handleSubmit } = useGlobalContext();
+const { handleSubmit } = useGlobalContext();
 const [ inputRender, setInputRender ] = useState<string>("begin");
 
 const inputElement:any = useRef();
@@ -34,8 +34,10 @@ const focusInput:() => void = ()=> {
        onClick={() => {
          let inputForm: any = (document.getElementById(`test`) as HTMLInputElement);
          focusInput()
-         inputForm.classList.toggle("reveal");
-         setInputRender("process")
+         setTimeout( ()=> {
+           inputForm.classList.toggle("reveal"); // Class to reveal input forms: default display: none
+          setInputRender("process")
+          }, 500) 
        }}>
          Begin Ritual
        </button>

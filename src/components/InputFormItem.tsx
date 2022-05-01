@@ -1,56 +1,53 @@
 import '../styles.scss';
 import { useGlobalContext } from '../GlobalContext';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 // COMPONENT
 const InputFormItem = (props: any) => {
-  const { values, setValues } = useGlobalContext();  
+  const { setValues } = useGlobalContext();  
   const [empty, setEmpty] = useState(1)
 
+  // Refocuses on the next input slot once user inserts value. 5 slots total.
   useEffect(() => {
-    if (empty < 6) {
-      props.focusInput()
-    }
+    empty < 6 && props.focusInput()
   }, [empty])
 
-  function multiply () {
-    const formsArray:any = [];
-
-    // prevents user from retyping in the same input after value exists
-    function disableInput (index: number){
-      let theInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
-      theInput.disabled = true;
+  // Prevents user from retyping in the same input after value exists
+  function multiplyNumberSlots () {
+    const slotsArray:any = [];
+    function disableFilledInput (index: number){
+      let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
+      filledInput.disabled = true;
     }
 
     for (let i = 1; i <= 5; i++) {
-      formsArray.push(
+      slotsArray.push(
         <input 
-        type="text" 
-        ref={empty === i ? props.inputElement : null}
-        maxLength={1}
-        className={`input__field ${i}`}
-        id={`digit${i}`}
-        key={i}
-        onChange={(e) => {
-          const singleInput = e.target.value;
-          setValues((prev: any) => prev + singleInput);
-          disableInput(i);
-          setEmpty(prev => prev + 1)
-        }}
-        
+          type="text" 
+          ref={empty === i ? props.inputElement : null}
+          maxLength={1}
+          className={`input__field ${i}`}
+          id={`digit${i}`}
+          key={i}
+          onChange={(e) => {
+            const singleInput = e.target.value;
+            setValues((prev: any) => prev + singleInput);
+            disableFilledInput(i);
+            setEmpty(prev => prev + 1)
+          }} 
         />
-        )
+      )
     }
-    return formsArray;
-  }
+    return slotsArray;
+  };
   
   // VIEW
   return (
-    <form className='InputFormItem__container' 
-    id='test'
-
+    <form 
+      className='InputFormItem__container' 
+      id='test'
     >
-      {multiply()}
+      {multiplyNumberSlots()}
     </form>
   )
 }

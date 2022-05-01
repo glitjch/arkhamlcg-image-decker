@@ -1,5 +1,12 @@
+import { useState } from "react";
+import Instructions from "./Instructions";
 
+
+// COMPONENT
 const Nav = () => {
+  const [showInstrutions, setshowInstrutions] = useState(false)
+
+// VIEW
   return (
     <nav className="Nav__container">
       <div>
@@ -9,8 +16,11 @@ const Nav = () => {
         <h2>for Arkham Horror LCG</h2>
       </div>
       <div>
-        <p>INSTRUCTIONS</p>
+        <p onClick={() =>setshowInstrutions(!showInstrutions)}>
+          INSTRUCTIONS
+        </p>
       </div>
+          {showInstrutions && <Instructions />}
     </nav>
   )
 }

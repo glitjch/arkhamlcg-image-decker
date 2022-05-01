@@ -39,7 +39,7 @@ html, body {
 
 .Nav__container {
   padding: 10px;
-  position: fixed;
+  position: relative;
   justify-content: space-between;
   display: flex;
   z-index: 3;
@@ -65,14 +65,26 @@ html, body {
       font-size: 0.8em;
       margin: 0;
       font-weight: 600;
+      transition: 1.9s;
+
       &:hover {
         color: #3ac2a2;
-        transition: 1.5s;
+        transition: 1.9s;
+        cursor: pointer;
       }
     }
   }
-
 }
+
+.Instructions__container {
+  position:absolute;
+  z-index: 4;
+  top: 50px;
+  right: 0;
+  width: 350px;
+  background-color: #157b63;
+}
+
 
 .App {
   position: fixed;

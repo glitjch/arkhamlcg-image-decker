@@ -33,8 +33,8 @@ const focusInput:() => void = ()=> {
        type="button" className="begin__button" 
        onClick={() => {
          let inputForm: any = (document.getElementById(`test`) as HTMLInputElement);
-         focusInput()
          setTimeout( ()=> {
+           focusInput()
            inputForm.classList.toggle("reveal"); // Class to reveal input forms: default display: none
           setInputRender("process")
           }, 500) 

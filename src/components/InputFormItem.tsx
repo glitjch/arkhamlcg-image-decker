@@ -1,6 +1,7 @@
 import '../styles.scss';
 import { useGlobalContext } from '../GlobalContext';
 import { useState, useEffect } from 'react';
+import { exit } from 'process';
 
 // COMPONENT
 const InputFormItem = (props: any) => {
@@ -22,6 +23,7 @@ const InputFormItem = (props: any) => {
     setValues((prev: any) => prev + event.target.value);
     setEmpty(prev => prev + 1)
   };
+  
 
   // Generates multiple slots with state conditions
   function multiplyNumberSlots () {
@@ -29,7 +31,7 @@ const InputFormItem = (props: any) => {
     for (let i = 1; i <= 5; i++) {
       slotsArray.push(
         <input 
-          type="text" 
+          type="number" 
           ref={empty === i ? props.inputElement : null}
           maxLength={1}
           className={`input__field ${i}`}

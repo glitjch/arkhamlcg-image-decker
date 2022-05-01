@@ -45,8 +45,11 @@ export default function ContextProvider(props:any) {
 
   // INPUT COMPONENT
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    if (values) {
+    e.preventDefault();
+    if(values.length < 5) {
+      throw new Error("Insert the full Deck ID")
+    }
+    if (values.length === 5) {
       setDecks([...decks, values]);
       console.log(values);
     }

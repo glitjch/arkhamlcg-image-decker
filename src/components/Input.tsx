@@ -10,16 +10,16 @@ interface Props{
 
 // COMPONENT
 const Input: React.FC<Props> = ({setRender}: Props ) => {
-const { handleSubmit } = useGlobalContext();
-const [ inputRender, setInputRender ] = useState<string>("begin");
+  const { handleSubmit } = useGlobalContext();
+  const [ inputRender, setInputRender ] = useState<string>("begin");
 
-const inputElement:any = useRef();
+  const inputElement:any = useRef();
 
-const focusInput:() => void = ()=> {
-  inputElement.current.focus();  
-}
+  const focusInput:() => void = ()=> {
+    inputElement.current.focus();  
+  }
 
-// VIEW
+  // VIEW
   return (
     <form 
       className='Input__container' 
@@ -40,16 +40,13 @@ const focusInput:() => void = ()=> {
           }, 500) 
        }}>
          Begin Ritual
-       </button>
+       </button>  
      }
       <InputFormItem 
         inputElement={inputElement}
         focusInput={focusInput}
       />
-
-     {inputRender === "process" &&
-        <button className="input__button">INVOKE</button>
-    }
+     {inputRender === "process" && <button className="input__button">INVOKE</button>}
     </form>
   )
 }

@@ -1,7 +1,6 @@
 import '../styles.scss';
 import { useGlobalContext } from '../GlobalContext';
 import { useState, useEffect } from 'react';
-import { exit } from 'process';
 
 // COMPONENT
 const InputFormItem = (props: any) => {

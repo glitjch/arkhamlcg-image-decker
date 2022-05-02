@@ -222,14 +222,14 @@ input::-webkit-inner-spin-button {
   overflow: scroll;
 }
 
-.SingleImage {
+.CardsListItem {
   width: min-content;
   border-width: 2px;
   margin: 50px;
 }
 
 @media print {
-  .SingleImage {
+  .CardsListItem {
     margin: 20px;
     width: 50px;
     border-color: red;

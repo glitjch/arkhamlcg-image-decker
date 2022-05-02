@@ -7,13 +7,13 @@ interface Props {
 }
 
 // COMPONENT
-const SingleImage: React.FC<Props> = ({image, key}) => {
+const CardsListItem: React.FC<Props> = ({image, key}) => {
   // VIEW
   return (
     <div>
-      <img key={key} className='SingleImage' src={"https://arkhamdb.com/" + image} /> 
+      <img key={key} className='CardsListItem' src={"https://arkhamdb.com/" + image} /> 
       <button type="button" onClick={() => printJS(`https://arkhamdb.com/${image}`, "image")}>Print</button>
     </div>
   )
 }
-export default SingleImage
+export default CardsListItem

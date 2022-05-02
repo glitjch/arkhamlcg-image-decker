@@ -26,7 +26,7 @@ const Input: React.FC = () => {
   useEffect(() => {
     if (filled === 5) {
       setDecks([...decks, values]);
-      setRender("Images");
+      setRender("CardsList");
     };
   }, [filled]);
   

@@ -4,19 +4,15 @@ import { useGlobalContext } from '../GlobalContext';
 import { printAll, generateImageURLs } from '../helpers';
 
 import '../styles.scss'
-import SingleImage from './SingleImage'
+import CardsListItem from './CardsListItem'
 
 
 // COMPONENT
-const Images: React.FC = () => {
-  const { 
-    images, setImages, 
-    cardCodes,
-    print, setPrint, } = useGlobalContext();
+const CardsList: React.FC = () => {
+  const { images, setImages, cardCodes, print, setPrint, } = useGlobalContext();
 
   const handleGenerateImages = () => {
     console.log(cardCodes);
-    
     generateImageURLs(cardCodes, setImages)
   };
 
@@ -26,7 +22,7 @@ const Images: React.FC = () => {
     .slice(0,5)
     .map((image) => {
       return (
-        <SingleImage image={image} key={Date.now() + Math.random()}/>
+        <CardsListItem image={image} key={Date.now() + Math.random()}/>
       )
     }
   );
@@ -54,6 +50,6 @@ const Images: React.FC = () => {
       {images && generateImages}
     </div>
   )
-}
+};
 
-export default Images
+export default CardsList;

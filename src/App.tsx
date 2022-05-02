@@ -5,7 +5,7 @@ import './styles.scss';
 import DeckList from './components/DeckList';
 import Input from './components/Input';
 import CardCodeList from './components/CardCodeList';
-import Images from './components/Images';
+import CardsList from './components/CardsList';
 
 // GLOBAL PROPS
 import { useGlobalContext } from './GlobalContext';
@@ -15,14 +15,15 @@ enum Renders {
   Input = "Input",
   DeckList = "DeckList",
   CardCodeList = "CardCodeList",
-  Images = "Images",
+  CardsList = "CardsList",
 };
+
 
 // COMPONENT
 const App: React.FC = () => {
-  const { setValues, decks, images, requestData, render} = useGlobalContext()
+  const { setValues, decks, requestData, render} = useGlobalContext()
 
-  // Fetches data when senses an added deck instance
+  // Fetches data when new deck added
   useEffect(() => {
     requestData();
     return () => setValues("");
@@ -31,14 +32,13 @@ const App: React.FC = () => {
   // VIEW
   return (
     <>
-    <Nav/>
+    <Nav />
     <div className="layerBg"/>
     <div className="App">
       {render === Renders.Input && <Input />}
       {render === Renders.DeckList && <DeckList />}
       {render === Renders.CardCodeList && <CardCodeList />}
-      {render === Renders.Images && <Images />}
-      {images && images.length}
+      {render === Renders.CardsList && <CardsList />}
     </div>
     </>
   );

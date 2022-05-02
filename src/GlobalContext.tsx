@@ -48,8 +48,8 @@ export default function ContextProvider(props:any) {
   const [values, setValues] = useState<any>("") // form input 
   const [decks, setDecks] =  useState<number[]>([]) // record of decks (some features for future app)
   const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
-  const [ images, setImages ] = useState<string[]>([]); // Images component
-  const [ print, setPrint ] = useState<string[]>([]); // Images Component list for print option
+  const [ images, setImages ] = useState<string[]>([]); // CardsList component
+  const [ print, setPrint ] = useState<string[]>([]); // CardsList Component list for print option
   const [ filled, setFilled ] = useState<number>(0);
   const [ inputRender, setInputRender ] = useState<string>("begin");
   const [render, setRender] = useState<string>("Input") // ---> for mounting and unmounting components. 
@@ -61,7 +61,7 @@ export default function ContextProvider(props:any) {
       throw new Error("Insert the full Deck ID");
     }
     e.preventDefault();
-    setRender("Images")
+    setRender("CardsList")
 
     // if (values.length === 5) {
     //   setDecks([...decks, values]);

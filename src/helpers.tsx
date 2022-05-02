@@ -19,25 +19,26 @@ export const generateCodeList = (list: number[]) => {
 // IMAGES COMPONENT: PRINTING ALL IMAGES
 export const printAll = (state: string[], setState: React.Dispatch<React.SetStateAction<string[]>>) => {
   const printArray: string[] = [];
-  state.filter(image => image !== undefined).map(image => printArray.push("https://arkhamdb.com" + image));
-  setState(printArray.slice(0, 5))
-}
+  state
+    .filter(image => image !== undefined)
+      .map(image => printArray.push("https://arkhamdb.com" + image));
+  setState(printArray);//.slice(0, 10));
+};
 
 
 // IMAGES COMPONENT: ACCRUE URLs
-export const generateImageURLs: any = (stateCardCodes: number[], setStateImages: React.Dispatch<React.SetStateAction<string[]>>) => {    
-  let requestImagesrc: any[] = [];
-  if (stateCardCodes) {
-    stateCardCodes.map((code: any) => {
-      let p =  axios
-        .get(`https://arkhamdb.com/api/public/card/${code}`);
-      requestImagesrc.push(p);
+export const generateImageURLs: any = (cardCodes: number[], setCardImgs: React.Dispatch<React.SetStateAction<string[]>>) => {    
+  let requestedCardsByUrls: any[] = [];
+  if (cardCodes) {
+    cardCodes.map((code: number) => {
+      let p =  axios.get(`https://arkhamdb.com/api/public/card/${code}`);
+      return requestedCardsByUrls.push(p);
     })
 
-    Promise.all(requestImagesrc)
+    Promise.all(requestedCardsByUrls)
       .then(results => {
         const array = results.map(result => result.data.imagesrc);
-        setStateImages([...array]);
+        setCardImgs([...array]);
       })
   }
 };

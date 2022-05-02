@@ -11,8 +11,8 @@ interface GlobalContent {
   handleSubmit: (e: any) => void,
   cardCodes: any,
   setCardCodes: any,
-  images: string[],
-  setImages: any,
+  cardFronts: string[],
+  setCardFronts: any,
   requestData: () => void,
   print: string[],
   setPrint: React.Dispatch<React.SetStateAction<string[]>>,
@@ -29,8 +29,8 @@ interface GlobalContent {
   // setDecks: React.Dispatch<React.SetStateAction<number[]>>,
   // handleSubmit: (e: React.FormEvent) => void,
   // cardCodes: number[],
-  // images: string[],
-  // setImages: React.Dispatch<React.SetStateAction<string[]>>,
+  // cardFronts: string[],
+  // setCardFronts: React.Dispatch<React.SetStateAction<string[]>>,
   // generateImageURLs: () => Promise<void>[] | undefined,
 };
 
@@ -45,14 +45,14 @@ export const useGlobalContext = () => useContext(MyGlobalContext);
 // PROVIDER COMPONENT
 export default function ContextProvider(props:any) {
   // ALL STATES MANAGED
-  const [values, setValues] = useState<any>("") // form input 
-  const [decks, setDecks] =  useState<number[]>([]) // record of decks (some features for future app)
-  const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
-  const [ images, setImages ] = useState<string[]>([]); // CardsList component
-  const [ print, setPrint ] = useState<string[]>([]); // CardsList Component list for print option
+  const [ values, setValues ] = useState<any>("") // form input 
+  const [ decks, setDecks ] =  useState<number[]>([]) // record of decks (some features for future app)
+  const [ cardCodes, setCardCodes ] = useState<number[]>([]) // CardCodeList component
+  const [ cardFronts, setCardFronts ] = useState<string[]>([]); // CardsList component: URLs per card
+  const [ print, setPrint ] = useState<string[]>([]); // CardsList component: list for print option
   const [ filled, setFilled ] = useState<number>(0);
   const [ inputRender, setInputRender ] = useState<string>("begin");
-  const [render, setRender] = useState<string>("Input") // ---> for mounting and unmounting components. 
+  const [ render, setRender ] = useState<string>("Input") // ---> for mounting and unmounting components. 
 
 
   // INPUT COMPONENT
@@ -62,7 +62,6 @@ export default function ContextProvider(props:any) {
     }
     e.preventDefault();
     setRender("CardsList")
-
     // if (values.length === 5) {
     //   setDecks([...decks, values]);
     // }
@@ -91,8 +90,8 @@ export default function ContextProvider(props:any) {
     handleSubmit, 
     cardCodes, 
     setCardCodes,
-    images,
-    setImages,
+    cardFronts,
+    setCardFronts,
     requestData,
     print,
     setPrint,

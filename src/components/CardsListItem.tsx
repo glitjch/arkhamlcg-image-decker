@@ -3,17 +3,16 @@ import printJS from 'print-js';
 
 interface Props {
   image: string,
-  key: number,
 }
 
 // COMPONENT
-const CardsListItem: React.FC<Props> = ({image, key}) => {
+const CardsListItem: React.FC<Props> = ({image}) => {
   // VIEW
   return (
-    <div>
-      <img key={key} className='CardsListItem' src={"https://arkhamdb.com/" + image} /> 
-      <button type="button" onClick={() => printJS(`https://arkhamdb.com/${image}`, "image")}>Print</button>
-    </div>
+    <>
+      <img key={Date.now() + Math.random()} className='CardsListItem' src={"https://arkhamdb.com/" + image} alt={image}/> 
+      <button type="button" className='CardListItem__print' onClick={() => printJS(`https://arkhamdb.com/${image}`, "image")}>Print</button>
+    </>
   )
 }
 export default CardsListItem

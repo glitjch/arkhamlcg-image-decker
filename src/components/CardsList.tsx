@@ -1,4 +1,3 @@
-import { NONAME } from 'dns';
 import printJS from 'print-js';
 import React, { useEffect } from 'react'
 import { useGlobalContext } from '../GlobalContext';
@@ -14,8 +13,9 @@ const CardsList: React.FC = () => {
 
   // <helpers.tsx> Requests for artwork of card fronts
   const handleGenerateImages = () => {
-    console.log(cardCodes);
-    generateImageURLs(cardCodes, setCardFronts);
+    setTimeout(() => {
+      generateImageURLs(cardCodes, setCardFronts);
+    }, 500)
   };
 
   useEffect(() => {
@@ -41,8 +41,8 @@ const CardsList: React.FC = () => {
   return (
     <>
       <div className="CardList__buttons">
-        <button type='button' onClick={() => handleGenerateImages()}>Generate</button>
-        <button type="button" onClick={() => printMulti()}> Print All {cardFronts.length} Cards</button>
+        {cardFronts.length === 0 && <button type='button' onClick={() => handleGenerateImages()}>Generate</button>}
+        {cardFronts.length > 0 && <button type="button" onClick={() => printMulti()}> Print All {cardFronts.length} Cards</button>}
       </div>
       <div className='CardList__container' id={'printPage'}>
         {cardFronts && generateImages}

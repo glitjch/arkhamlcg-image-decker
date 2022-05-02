@@ -60,7 +60,6 @@ export default function ContextProvider(props:any) {
     if(values.length < 5) {
       throw new Error("Insert the full Deck ID");
     }
-    
     e.preventDefault();
     setRender("Images")
 

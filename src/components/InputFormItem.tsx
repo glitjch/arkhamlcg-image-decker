@@ -4,21 +4,14 @@ import { useEffect } from 'react';
 
 // COMPONENT
 const InputFormItem = (props: any) => {
-  const { filled, setFilled, setValues, setRender, setDecks, decks, values } = useGlobalContext();  
+  const { filled, setFilled, setValues } = useGlobalContext();  
 
   // Refocuses on the next input slot once user inserts value. 5 slots total.
   useEffect(() => {
     filled < 5 && props.focusInput()
   }, [filled]);
 
-  // Prevents user from retyping in the same input after value exists
-  const disableFilledInput = (index: number) => {
-      let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
-      if (filled === index) {
-        filledInput.disabled = true;
-      }
-    };
-  
+
   const handleInputChange = (event: any) => {
     if (event.target.value) {
       event.preventDefault();
@@ -26,11 +19,14 @@ const InputFormItem = (props: any) => {
       setFilled(prev => prev + 1)
     }
   };
-  useEffect(() => {
-    filled === 5 && 
-    setRender("Images");
-    setDecks([...decks, values]);
-  }, [filled])
+
+    // Prevents user from retyping in the same input after value exists
+    const disableFilledInput = (index: number) => {
+      let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
+      if (filled === index) {
+        filledInput.disabled = true;
+      }
+    };
   
   // Generates multiple slots with state conditions
   function multiplyNumberSlots () {
@@ -56,10 +52,7 @@ const InputFormItem = (props: any) => {
   
   // VIEW
   return (
-    <form 
-      className='InputFormItem__container' 
-      id='test'
-    >
+    <form className='InputFormItem__container' id='test'>
       {multiplyNumberSlots()}
     </form>
   )

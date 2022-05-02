@@ -6,33 +6,39 @@ import InputFormItem from './InputFormItem';
 
 // COMPONENT
 const Input: React.FC = () => {
-  const { inputRender, setInputRender, handleSubmit, filled, } = useGlobalContext();
-  const inputElement:any = useRef();
+  const { inputRender, setInputRender, handleSubmit, filled, values, decks, setDecks, setRender} = useGlobalContext();
   
+  // Focuses on inputFormItems slots
+  const inputElement:any = useRef();
   const focusInput:() => void = ()=> {
     inputElement.current.focus();  
-  }
+  };
 
+  // Reveals InputFormItems slots
   const handleOnClick = () => {
     setTimeout( ()=> {
-      setInputRender("process")
-      focusInput()
-    }, 500) 
-  }
+      setInputRender("process");
+      focusInput();
+    }, 500);
+  };
+
+  // Reveals deck after completing all slots
+  useEffect(() => {
+    if (filled === 5) {
+      setDecks([...decks, values]);
+      setRender("Images");
+    };
+  }, [filled]);
+  
   // VIEW
   return (
-    <form 
-      className='Input__container' 
-      onSubmit={(e) => {
-        handleSubmit(e)
-    }}>
-
+    <form className='Input__container' onSubmit={(e) => handleSubmit(e)}>
       {inputRender === "begin" && 
         <button 
           type="button" 
           className="begin__button" 
           onClick={() => {
-            handleOnClick()
+            handleOnClick();
         }}>
           Begin Ritual
         </button>  
@@ -45,6 +51,6 @@ const Input: React.FC = () => {
       }
     </form>
   )
-}
+};
 
-export default Input
+export default Input;

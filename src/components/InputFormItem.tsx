@@ -8,7 +8,8 @@ const InputFormItem = (props: any) => {
 
   // Refocuses on the next input slot once user inserts value. 5 slots total.
   useEffect(() => {
-    filled < 5 && props.focusInput()
+    filled < 5 && props.focusInput();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filled]);
 
 

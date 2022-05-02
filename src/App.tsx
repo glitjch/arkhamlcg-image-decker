@@ -27,6 +27,7 @@ const App: React.FC = () => {
   useEffect(() => {
     requestData();
     return () => setValues("");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [decks]);
 
   // VIEW

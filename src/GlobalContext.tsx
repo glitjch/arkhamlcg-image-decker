@@ -69,7 +69,7 @@ export default function ContextProvider(props:any) {
 
   // CARDCODESLIST COMPONENT
   const requestData = () => {
-    if (values && Number(values) !== NaN && values.length === 5) {
+    if (values && !isNaN(Number(values)) && values.length === 5) {
       const newestDeck = decks[decks.length - 1];      
       return axios
       .get(`https://arkhamdb.com/api/public/decklist/${newestDeck}`)

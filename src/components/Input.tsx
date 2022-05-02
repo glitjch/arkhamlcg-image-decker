@@ -28,6 +28,7 @@ const Input: React.FC = () => {
       setDecks([...decks, values]);
       setRender("CardsList");
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filled]);
   
   // VIEW

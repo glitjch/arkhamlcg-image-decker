@@ -20,10 +20,12 @@ const CardsList: React.FC = () => {
 
   useEffect(() => {
     printAll(print, setPrint);
+    console.log(cardFronts);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cardFronts]);
   
   const generateImages = cardFronts
-    // .slice(0,10)
+    .filter(card => card !== undefined)
       .map((card) => <CardsListItem image={card}/>
       );
 

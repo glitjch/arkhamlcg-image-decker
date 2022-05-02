@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
-import { EnumType } from 'typescript';
 
 // ts shape
 interface GlobalContent {

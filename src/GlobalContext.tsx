@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createContext, useContext, useState } from 'react';
+import { EnumType } from 'typescript';
 
 // ts shape
 interface GlobalContent {
@@ -15,6 +16,13 @@ interface GlobalContent {
   requestData: () => void,
   print: string[],
   setPrint: React.Dispatch<React.SetStateAction<string[]>>,
+  filled: number,
+  setFilled: React.Dispatch<React.SetStateAction<number>>,
+  inputRender: string,
+  setInputRender: React.Dispatch<React.SetStateAction<string>>,
+  render: string,
+  setRender: React.Dispatch<React.SetStateAction<string>>,
+   
   // values: string,
   // setValues: React.Dispatch<React.SetStateAction<string>>,
   // decks: number[],
@@ -42,20 +50,23 @@ export default function ContextProvider(props:any) {
   const [cardCodes, setCardCodes] = useState<number[]>([]) // CardCodeList component
   const [ images, setImages ] = useState<string[]>([]); // Images component
   const [ print, setPrint ] = useState<string[]>([]); // Images Component list for print option
-  const [ empty, setEmpty ] = useState<number>(1);
+  const [ filled, setFilled ] = useState<number>(0);
+  const [ inputRender, setInputRender ] = useState<string>("begin");
+  const [render, setRender] = useState<string>("Input") // ---> for mounting and unmounting components. 
+
 
   // INPUT COMPONENT
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
     if(values.length < 5) {
-      setEmpty(1);
       throw new Error("Insert the full Deck ID");
     }
     
-    if (values.length === 5) {
-      setDecks([...decks, values]);
-      console.log(values);
-    }
+    e.preventDefault();
+    setRender("Images")
+
+    // if (values.length === 5) {
+    //   setDecks([...decks, values]);
+    // }
   }
 
   // CARDCODESLIST COMPONENT
@@ -86,6 +97,12 @@ export default function ContextProvider(props:any) {
     requestData,
     print,
     setPrint,
+    filled,
+    setFilled,
+    inputRender,
+    setInputRender,
+    render,
+    setRender
   }
 
 

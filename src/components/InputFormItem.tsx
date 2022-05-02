@@ -1,42 +1,48 @@
 import '../styles.scss';
 import { useGlobalContext } from '../GlobalContext';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 // COMPONENT
 const InputFormItem = (props: any) => {
-  const { setValues } = useGlobalContext();  
-  const [empty, setEmpty] = useState(1)
+  const { filled, setFilled, setValues, setRender, setDecks, decks, values } = useGlobalContext();  
 
   // Refocuses on the next input slot once user inserts value. 5 slots total.
   useEffect(() => {
-    empty < 6 && props.focusInput()
-  }, [empty]);
+    filled < 5 && props.focusInput()
+  }, [filled]);
 
   // Prevents user from retyping in the same input after value exists
   const disableFilledInput = (index: number) => {
       let filledInput = (document.getElementById(`digit${index}`) as HTMLInputElement);
-      filledInput.disabled = true;
+      if (filled === index) {
+        filledInput.disabled = true;
+      }
     };
   
   const handleInputChange = (event: any) => {
-    setValues((prev: any) => prev + event.target.value);
-    setEmpty(prev => prev + 1)
+    if (event.target.value) {
+      event.preventDefault();
+      setValues((prev: any) => prev + event.target.value);
+      setFilled(prev => prev + 1)
+    }
   };
+  useEffect(() => {
+    filled === 5 && 
+    setRender("Images");
+    setDecks([...decks, values]);
+  }, [filled])
   
-
   // Generates multiple slots with state conditions
   function multiplyNumberSlots () {
     const slotsArray:any = [];
-    for (let i = 1; i <= 5; i++) {
+    for (let i = 0; i < 5; i++) {
       slotsArray.push(
         <input 
-          type="number" 
-          ref={empty === i ? props.inputElement : null}
           maxLength={1}
-          max={9}
-          min={+0}
+          type="number" 
+          ref={filled === i ? props.inputElement : null} // Refocuses the next slot
           className={`input__field ${i}`}
-          id={`digit${i}`}
+          id={`digit${i}`} // Refocuses the next slot
           key={i}
           onChange={(e) => {
             handleInputChange(e)

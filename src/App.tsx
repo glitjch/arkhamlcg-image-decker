@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './styles.scss';
 
 // CHILDREN
@@ -16,20 +16,17 @@ enum Renders {
   DeckList = "DeckList",
   CardCodeList = "CardCodeList",
   Images = "Images",
-}
+};
 
 // COMPONENT
 const App: React.FC = () => {
-  const { setValues, decks, images, requestData, } = useGlobalContext()
-  const [render, setRender] = useState<string>("Input") // ---> for mounting and unmounting components. 
+  const { setValues, decks, images, requestData, render} = useGlobalContext()
 
-  // 
+  // Fetches data when senses an added deck instance
   useEffect(() => {
-    requestData()
-    return () => {
-      setValues("")
-    }
-  }, [decks])
+    requestData();
+    return () => setValues("");
+  }, [decks]);
 
   // VIEW
   return (
@@ -37,7 +34,7 @@ const App: React.FC = () => {
     <Nav/>
     <div className="layerBg"/>
     <div className="App">
-      {render === Renders.Input && <Input setRender={setRender}/>}
+      {render === Renders.Input && <Input />}
       {render === Renders.DeckList && <DeckList />}
       {render === Renders.CardCodeList && <CardCodeList />}
       {render === Renders.Images && <Images />}

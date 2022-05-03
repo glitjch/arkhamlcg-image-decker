@@ -42,6 +42,7 @@ const CardsList: React.FC = () => {
   // VIEW
   return (
     <>
+      {cardFronts.length === 0 && (<h1 className='CardList__message'>DECK IS READY TO LOAD CLICK 'GENERATE' BELOW</h1>)}
       <div className="CardList__buttons">
         {cardFronts.length === 0 && <button type='button' onClick={() => handleGenerateImages()}>Generate</button>}
         {cardFronts.length > 0 && <button type="button" onClick={() => printMulti()}> Print All {cardFronts.length} Cards</button>}

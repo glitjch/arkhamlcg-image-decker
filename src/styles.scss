@@ -223,8 +223,21 @@ input::-webkit-inner-spin-button {
   margin-top: 50px;
   padding: 0 25px 0 25px;
   overflow-y: scroll;
-
 }
+
+.CardList__message {
+  width: 50%;
+  position:absolute;
+  overflow: hidden;
+  font-size: 10 rem;
+    
+  font: {
+    family: 'Neucha', cursive;
+    size: 3.5rem;
+    weight: 300;
+  }
+}
+
 
 .CardList__buttons {
   display: flex;
